@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">SIRENA IOT SEINTEC</string>
+    <string name="connect">Conectar</string>
+    <string name="name">Nombre</string>
+    <string name="key">Key</string>
+    <string name="uuid_placeholder">XXXX-XXXX-XXXX-XXXX</string>
+    <string name="help_name">SIRENA-UPC-SA</string>
+</resources>
