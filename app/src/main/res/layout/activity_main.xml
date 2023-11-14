@@ -101,7 +101,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/bg_primary"
-                android:capitalize="none"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="@string/connect"
                 android:textAlignment="center"
@@ -117,7 +116,6 @@
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@tools:sample/avatars"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/bg_main" />

@@ -9,5 +9,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="text_primary">#434343</color>
     <color name="text_secondary">#B8B8B8</color>
+    <color name="text_tertiary">#1E1E1E</color>
     <color name="bg_primary">#71C693</color>
+    <color name="bg_secondary">#59985B</color>
+    <color name="bg_focused">#F2F2F2</color>
+    <color name="bg_tertiary">#64FF73</color>
 </resources>

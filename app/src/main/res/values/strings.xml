@@ -5,4 +5,13 @@
     <string name="key">Key</string>
     <string name="uuid_placeholder">XXXX-XXXX-XXXX-XXXX</string>
     <string name="help_name">SIRENA-UPC-SA</string>
+    <string name="bluetooth">Bluetooth</string>
+    <string name="schedules">Horarios</string>
+    <string name="establishedes">Establecidos</string>
+    <string name="filter">Filtrar</string>
+    <string name="add">Agregar</string>
+    <string name="hour">Hora</string>
+    <string name="repeat">Repetir</string>
+    <string name="description">Descripción</string>
+    <string name="add_description">Añade una descripción</string>
 </resources>

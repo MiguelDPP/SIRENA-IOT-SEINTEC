@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "com.seintec.sirenaiotseintec"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.seintec.sirenaiotseintec"
