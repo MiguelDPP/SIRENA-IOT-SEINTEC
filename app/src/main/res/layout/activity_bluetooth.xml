@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    >
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -31,7 +32,7 @@
                 android:layout_weight="1"
                 android:elegantTextHeight="true"
                 android:fontFamily="@font/poppins"
-                android:text="@string/schedules"
+                android:text="@string/bluetooth"
                 android:textColor="@color/text_primary"
                 android:textSize="34sp" />
 
@@ -39,7 +40,7 @@
                 android:id="@+id/imageView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/clock_icon_50" />
+                app:srcCompat="@drawable/bluetooth_icon_40" />
 
         </LinearLayout>
 
@@ -58,64 +59,20 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="@string/establishedes"
+                android:text="@string/bluetooth"
                 android:textColor="@color/text_primary"
                 android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/lbSchedules"
+            <Switch
+                android:id="@+id/switch1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:fontFamily="@font/poppins"
-                android:text="23 Horarios"
-                android:textColor="@color/text_primary"
-                android:textSize="16sp" />
+                android:thumb="@drawable/switch_thumb"
+                android:track="@drawable/switch_track" />
+
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/viewSelectedSchedule"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/focused_selected"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="30dp"
-            android:paddingTop="5dp"
-            android:paddingRight="30dp"
-            android:paddingBottom="5dp">
-
-            <TextView
-                android:id="@+id/lbSubtitleFilter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:elegantTextHeight="true"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="@string/filter"
-                android:textColor="@color/text_primary"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/lbFilter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:elegantTextHeight="true"
-                android:fontFamily="@font/poppins"
-                android:text="14/11/23"
-                android:textColor="@color/text_primary"
-                android:textSize="16sp" />
-
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:layout_weight="0"
-                app:srcCompat="@drawable/arrow_forward_icon_24" />
-        </LinearLayout>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -129,17 +86,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
-    <ImageButton
-        android:id="@+id/btnAddSchedule"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="@drawable/btn_custom_float"
-        android:src="@drawable/clock_add_icon"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.64" />
 
     <ImageButton
         android:id="@+id/btnOptions"

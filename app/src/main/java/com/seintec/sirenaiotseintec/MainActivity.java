@@ -2,25 +2,26 @@ package com.seintec.sirenaiotseintec;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    //Codigo para schedule
-    LinearLayout filter;
-
-
+    Button btnConectar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_schedule);
-        filter = findViewById(R.id.viewSelectedSchedule);
+        setContentView(R.layout.activity_main);
 
-        //Cambiar el color mientras tenga seleccionado un filtro
-        filter.setOnClickListener(v -> {
-            Toast.makeText(this, "Filtro", Toast.LENGTH_SHORT).show();
+        btnConectar = findViewById(R.id.btnConnect);
+
+        btnConectar.setOnClickListener((v)->{
+            Intent intent = new Intent(MainActivity.this, ScheduleActivity.class);
+            MainActivity.this.startActivity(intent);
+            //MainActivity.this.finish();
         });
     }
 }
