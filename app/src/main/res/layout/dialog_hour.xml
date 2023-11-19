@@ -65,32 +65,30 @@
                 android:textColor="@color/text_primary"
                 android:textSize="18sp" />
 
-            <EditText
-                android:id="@+id/txtName"
+            <Spinner
+                android:id="@+id/spinnerName"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="@drawable/rounded_border_bg"
-                android:elegantTextHeight="true"
-                android:ems="10"
-                android:inputType="text"
-                android:padding="10dp"
-                tools:fontFamily="@font/poppins" />
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_border_icon_bg"
+                android:padding="10dp" />
 
-            <CheckBox
-                android:id="@+id/checkBoxIsActivated"
+            <TextView
+                android:id="@+id/lbHour"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginLeft="-3dp"
-                android:buttonTint="@color/bg_primary"
-                android:checked="false"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:elegantTextHeight="true"
-
                 android:fontFamily="@font/poppins_semibold"
-                android:text="@string/active"
+                android:text="@string/hour"
                 android:textColor="@color/text_primary"
-                android:textSize="18sp"
+                android:textSize="18sp" />
 
-                />
+            <Spinner
+                android:id="@+id/spinnerHour"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_border_icon_bg"
+                android:padding="10dp" />
 
             <Button
                 android:id="@+id/btnAdd"

@@ -38,7 +38,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/poppins"
-            android:text="@string/connect"
+            android:text="@string/register"
             android:textSize="40sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -73,12 +73,12 @@
                 android:elegantTextHeight="true"
                 android:ems="10"
                 android:fontFamily="@font/poppins_semibold"
-                android:hint="@string/help_name"
+                android:hint="@string/name_pernalized"
                 android:inputType="text"
                 android:padding="10dp"
-                android:text="TECNICO"
                 android:textColor="@color/text_secondary"
-                android:textColorHint="@color/text_secondary" />
+                android:textColorHint="@color/text_secondary"
+                tools:elegantTextHeight="true" />
 
             <TextView
                 android:id="@+id/lbKey"
@@ -101,48 +101,48 @@
                 android:hint="@string/help_password"
                 android:inputType="text"
                 android:padding="10dp"
-                android:text="123456"
                 android:textColor="@color/text_secondary"
-                android:textColorHint="@color/text_secondary" />
+                android:textColorHint="@color/text_secondary"
+                tools:elegantTextHeight="true" />
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/lbKey3"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/mac_address"
+                android:textColor="@color/text_primary"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/txtMac"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/custom_input"
+                android:elegantTextHeight="true"
+                android:ems="10"
+                android:fontFamily="@font/poppins_semibold"
+                android:hint="@string/uuid_placeholder"
+                android:inputType="text|textCapCharacters"
+                android:padding="10dp"
+                android:textColor="@color/text_secondary"
+                android:textColorHint="@color/text_secondary"
+                tools:elegantTextHeight="true" />
+
+            <Button
+                android:id="@+id/btnRegister"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btnConnect"
-                    android:layout_width="125dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="8dp"
-                    android:layout_weight="0.5"
-                    android:background="@drawable/bg_primary"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:text="@string/connect"
-                    android:textAlignment="center"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    tools:elegantTextHeight="true" />
-
-                <Button
-                    android:id="@+id/btnRegister"
-                    android:layout_width="125dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_weight="0.5"
-                    android:background="@drawable/bg_primary"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:text="@string/register"
-                    android:textAlignment="center"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    tools:elegantTextHeight="true" />
-            </LinearLayout>
-
+                android:background="@drawable/bg_primary"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/register"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                tools:elegantTextHeight="true" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

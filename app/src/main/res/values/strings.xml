@@ -3,7 +3,7 @@
     <string name="connect">Conectar</string>
     <string name="name">Nombre</string>
     <string name="key">Key</string>
-    <string name="uuid_placeholder">XXXX-XXXX-XXXX-XXXX</string>
+    <string name="uuid_placeholder">AA:BB:CC:DD:EE:FF</string>
     <string name="help_name">SIRENA-UPC-SA</string>
     <string name="bluetooth">Bluetooth</string>
     <string name="schedules">Horarios</string>
@@ -14,4 +14,13 @@
     <string name="repeat">Repetir</string>
     <string name="description">Descripción</string>
     <string name="add_description">Añade una descripción</string>
+    <string name="mac_address">Dirección MAC</string>
+    <string name="register">Registrate</string>
+    <string name="name_pernalized">Nombre personalizado</string>
+    <string name="help_password">*******</string>
+    <string name="active">Activo</string>
+    <string name="set_schedule">Establecer horario</string>
+    <string name="not_found_result">No se encontraron resultados</string>
+    <string name="change_name">Cambiar nombre</string>
+    <string name="predetermined">Predeterminado</string>
 </resources>

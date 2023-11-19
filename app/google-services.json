@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "726272822021",
+    "firebase_url": "https://esp32-ab14f-default-rtdb.firebaseio.com",
+    "project_id": "esp32-ab14f",
+    "storage_bucket": "esp32-ab14f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:726272822021:android:6cefd9c00c37420b2e056c",
+        "android_client_info": {
+          "package_name": "com.seintec.sirenaiotseintec"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKugPseShSfPskY1v6IcPhIWbTMLWajdM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

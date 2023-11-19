@@ -73,49 +73,6 @@
                 android:textSize="16sp" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/viewSelectedSchedule"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/focused_selected"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="30dp"
-            android:paddingTop="5dp"
-            android:paddingRight="30dp"
-            android:paddingBottom="5dp">
-
-            <TextView
-                android:id="@+id/lbSubtitleFilter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:elegantTextHeight="true"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="@string/filter"
-                android:textColor="@color/text_primary"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/lbFilter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:elegantTextHeight="true"
-                android:fontFamily="@font/poppins"
-                android:text="14/11/23"
-                android:textColor="@color/text_primary"
-                android:textSize="16sp" />
-
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:layout_weight="0"
-                app:srcCompat="@drawable/arrow_forward_icon_24" />
-        </LinearLayout>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -151,6 +108,7 @@
         android:paddingRight="5dp"
         android:paddingBottom="15dp"
         android:src="@drawable/bgtemp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
