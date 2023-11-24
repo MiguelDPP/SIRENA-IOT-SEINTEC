@@ -9,16 +9,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.seintec.sirenaiotseintec.EditScheduleActivity;
 import com.seintec.sirenaiotseintec.R;
+import com.seintec.sirenaiotseintec.models.Device;
 import com.seintec.sirenaiotseintec.models.Schedule;
+import com.seintec.sirenaiotseintec.utils.Database;
 
 import java.util.ArrayList;
 
 public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHolder> {
     private ArrayList<Schedule> localDataSet;
+    private ConstraintLayout progressView;
+
+    public void setProgressView(ConstraintLayout progressView) {
+        this.progressView = progressView;
+    }
 
     public void setLocalDataSet(ArrayList<Schedule> localDataSet) {
         this.localDataSet = localDataSet;
@@ -82,7 +91,34 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
 
         holder.imageRight.setOnClickListener((v)->{
             //Eliminar el elemento
-            Toast.makeText(v.getContext(), "Eliminar", Toast.LENGTH_SHORT).show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+            builder.setTitle("Eliminar");
+            builder.setMessage("¿Está seguro de eliminar el horario?");
+            builder.setPositiveButton("Si", (dialog, which) -> {
+                progressView.setVisibility(ConstraintLayout.VISIBLE);
+                Database.deleteFromDatabase("devices/" + Device.getUserLogin().getMac() + "/schedules/" + holder.schedule.getName())
+                        .thenAccept(result -> {
+                            if (result) {
+                                if (holder.schedule.isActivated()) {
+                                    Database.saveInformationDatabase("devices/" + Device.getUserLogin().getMac() + "/schedules/Predeterminado", true, "activated");
+                                }
+                                localDataSet.remove(position);
+                                notifyDataSetChanged();
+                                Toast.makeText(v.getContext(), "Eliminado correctamente", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(v.getContext(), "Error al eliminar", Toast.LENGTH_SHORT).show();
+                            }
+                            progressView.setVisibility(ConstraintLayout.GONE);
+                        }).exceptionally(throwable -> {
+                    Toast.makeText(v.getContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                    progressView.setVisibility(ConstraintLayout.GONE);
+                    return null;
+                });
+
+            })
+            .setNegativeButton("No", (dialog, which) -> {
+                dialog.dismiss();
+            }).show();
         });
     }
 

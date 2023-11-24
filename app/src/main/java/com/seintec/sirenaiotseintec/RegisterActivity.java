@@ -1,6 +1,7 @@
 package com.seintec.sirenaiotseintec;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.Bundle;
 import android.widget.Button;
@@ -14,6 +15,8 @@ import com.seintec.sirenaiotseintec.utils.Database;
 public class RegisterActivity extends AppCompatActivity {
     Button btnRegister;
     EditText txtName, txtKey, txtMac;
+
+    ConstraintLayout progressView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,17 +26,21 @@ public class RegisterActivity extends AppCompatActivity {
         txtName = findViewById(R.id.txtName);
         txtKey = findViewById(R.id.txtKey);
         txtMac = findViewById(R.id.txtMac);
+        progressView = findViewById(R.id.progressView);
 
         btnRegister.setOnClickListener((v)-> {
             if (checkFields()) {
+                showProgress();
                 Database.referenceContains("devices/"+txtMac.getText().toString())
                         .thenAccept(result -> {
                             if (result) {
+                                hideProgress();
                                 Toast.makeText(this, "Ya existe un dispositivo con esa MAC", Toast.LENGTH_SHORT).show();
                             } else {
                                 Database.findOnDataBase("/devices", "name", txtName.getText().toString(), Device.class)
                                         .thenAccept(result2 -> {
                                             if (result2.size() > 0) {
+                                                hideProgress();
                                                 Toast.makeText(RegisterActivity.this, "El nombre ya existe", Toast.LENGTH_SHORT).show();
                                             } else {
                                                 Device device = new Device(txtName.getText().toString(), txtKey.getText().toString(), txtMac.getText().toString().toUpperCase(), "Predeterminado");
@@ -59,6 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
                                                             } else {
                                                                 Toast.makeText(RegisterActivity.this, "Error al guardar", Toast.LENGTH_SHORT).show();
                                                             }
+                                                            hideProgress();
                                                         });
 
 
@@ -110,5 +118,12 @@ public class RegisterActivity extends AppCompatActivity {
             }
         }
         return true;
+    }
+    public void showProgress() {
+        progressView.setVisibility(ConstraintLayout.VISIBLE);
+    }
+
+    public void hideProgress() {
+        progressView.setVisibility(ConstraintLayout.GONE);
     }
 }

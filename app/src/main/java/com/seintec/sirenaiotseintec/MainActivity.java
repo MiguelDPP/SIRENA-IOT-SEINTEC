@@ -1,6 +1,7 @@
 package com.seintec.sirenaiotseintec;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -16,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
 
     Button btnConectar, btnRegistrar;
     EditText txtName, txtKey;
+
+    ConstraintLayout progressView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         btnRegistrar = findViewById(R.id.btnRegister);
         txtName = findViewById(R.id.txtName);
         txtKey = findViewById(R.id.txtKey);
+        progressView = findViewById(R.id.progressView);
+        progressView.setOnClickListener((v)->{}); //Para que no se pueda interactuar con el progressView
 
         btnRegistrar.setOnClickListener((v)->{
             Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
@@ -34,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnConectar.setOnClickListener((v)->{
             if (checkFields()) {
+                showProgress();
                 Database.findOnDataBase("devices", "name", txtName.getText().toString(), Device.class)
                         .thenAccept(result -> {
                             if (result.size() > 0) {
@@ -48,13 +54,15 @@ public class MainActivity extends AppCompatActivity {
                             } else {
                                 Toast.makeText(this, "El nombre no existe", Toast.LENGTH_SHORT).show();
                             }
+
+                            hideProgress();
                         })
                         .exceptionally(throwable -> {
                             Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_SHORT).show();
                             AlertDialog.Builder builder = new AlertDialog.Builder(this);
                             builder.setMessage(throwable.getMessage());
                             builder.show();
-
+                            hideProgress();
                             return null;
                         });
             }
@@ -70,5 +78,13 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+
+    public void showProgress() {
+        progressView.setVisibility(ConstraintLayout.VISIBLE);
+    }
+
+    public void hideProgress() {
+        progressView.setVisibility(ConstraintLayout.GONE);
     }
 }

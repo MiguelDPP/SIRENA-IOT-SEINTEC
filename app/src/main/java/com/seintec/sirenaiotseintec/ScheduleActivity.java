@@ -1,6 +1,7 @@
 package com.seintec.sirenaiotseintec;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -8,6 +9,8 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -32,6 +35,7 @@ public class ScheduleActivity extends AppCompatActivity {
     ImageButton btnAddSchedule;
     ImageButton btnOptions;
     TextView lbSchedules;
+    ConstraintLayout progressView;
 
     float y = 0;
     @SuppressLint("ClickableViewAccessibility")
@@ -42,6 +46,8 @@ public class ScheduleActivity extends AppCompatActivity {
 
         btnAddSchedule = findViewById(R.id.btnAddSchedule);
         lbSchedules = findViewById(R.id.lbSchedules);
+        progressView = findViewById(R.id.progressView);
+        progressView.setOnClickListener((v)->{}); //Para que no se pueda interactuar con el progressView
 
         //y = btnAddSchedule.getY();
 
@@ -118,6 +124,20 @@ public class ScheduleActivity extends AppCompatActivity {
             txtName.dispatchTouchEvent(MotionEvent.obtain(System.currentTimeMillis(), System.currentTimeMillis(), MotionEvent.ACTION_DOWN, 0, 0, 0));
             txtName.dispatchTouchEvent(MotionEvent.obtain(System.currentTimeMillis(), System.currentTimeMillis(), MotionEvent.ACTION_UP, 0, 0, 0));
         }, 200);
+
+        txtName.setFilters(new InputFilter[]{new InputFilter() {
+            @Override
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart,
+                                       int dend) {
+                if (source.equals("")) { // for backspace
+                    return source;
+                }
+                if (source.toString().matches("[a-zA-Z0-9 ]+")) {
+                    return source;
+                }
+                return "";
+            }
+        }});
         Button btnSave = view.findViewById(R.id.btnAdd);
         CheckBox isActivated = view.findViewById(R.id.checkBoxIsActivated);
         btnClose.setOnClickListener((v1)->{
@@ -128,11 +148,13 @@ public class ScheduleActivity extends AppCompatActivity {
             if (txtName.getText().toString().isEmpty()) {
                 txtName.setError("El nombre es requerido");
             } else {
+                showProgress();
                 Database.referenceContains("devices/" + Device.getUserLogin().getMac() + "/schedules/" + txtName.getText().toString().trim())
                         .thenAccept(result -> {
                             if (result) {
                                 Toast.makeText(this, "El nombre ya existe", Toast.LENGTH_SHORT).show();
                                 txtName.setError("El nombre ya existe");
+                                hideProgress();
                             } else {
                                 Schedule schedule = new Schedule(txtName.getText().toString().trim(), isActivated.isChecked());
                                 if (isActivated.isChecked()) {
@@ -153,12 +175,16 @@ public class ScheduleActivity extends AppCompatActivity {
                                                                             } else {
                                                                                 Toast.makeText(this, "Error al guardar", Toast.LENGTH_SHORT).show();
                                                                             }
+                                                                            hideProgress();
                                                                         });
                                                                 } else {
+                                                                    hideProgress();
                                                                     Toast.makeText(this, "Error al guardar", Toast.LENGTH_SHORT).show();
                                                                 }
                                                             });
                                                 } else {
+
+                                                    hideProgress();
                                                     Toast.makeText(this, "Error al guardar", Toast.LENGTH_SHORT).show();
                                                 }
                                             });
@@ -173,6 +199,7 @@ public class ScheduleActivity extends AppCompatActivity {
     }
 
     public void loadSchedules() {
+        showProgress();
         Database.getInformationDatabaseList("devices/" + Device.getUserLogin().getMac() + "/schedules", Schedule.class)
                 .thenAccept(result -> {
                     //Ordenar para que salga primero el predeterminado
@@ -186,12 +213,25 @@ public class ScheduleActivity extends AppCompatActivity {
                             temp.add(schedule);
                         }
                     }
+                    main.sort((o1, o2) -> {
+                        if (o1.isActivated()) {
+                            return -1;
+                        } else if (o2.isActivated()) {
+                            return 1;
+                        } else {
+                            return 0;
+                        }
+                    });
                     main.addAll(temp);
                     scheduleAdapter.setLocalDataSet(main);
+                    scheduleAdapter.setProgressView(progressView);
                     viewSchedule.setAdapter(scheduleAdapter);
+
+                    hideProgress();
                 })
                 .exceptionally(throwable -> {
                     Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                    hideProgress();
                     return null;
                 });
     }
@@ -212,5 +252,13 @@ public class ScheduleActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         loadSchedules();
+    }
+
+    public void showProgress() {
+        progressView.setVisibility(ConstraintLayout.VISIBLE);
+    }
+
+    public void hideProgress() {
+        progressView.setVisibility(ConstraintLayout.GONE);
     }
 }
